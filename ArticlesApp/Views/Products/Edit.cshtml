@@ -1,0 +1,74 @@
+﻿@model productsApp.Models.product
+
+<h2 class="text-center mt-5">Editare produs</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "products", 
+                    method: FormMethod.Post, 
+                    routeValues:new { id = Model.Id }))
+           {
+             /* @Html.HiddenFor(m => m.Id)  */
+
+
+                @Html.Label("Title", "Titlu Produs")
+                <br />
+                @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                <br /><br />
+
+                @Html.Label("Content", "Descriere Produs")
+                <br />
+                @* @Html.Colaborator("Content", new { htmlAttributes = new { @class = "form-control summernote" } }) *@
+                @Html.TextArea("Content", Model.Content, new { @class = "form-control summernote" })
+
+                @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+                <br /><br />
+
+                @Html.Label("Poza", "Link cu poza")
+                <br />
+                @* @Html.Colaborator("Poza", new { htmlAttributes = new { @class = "form-control summernote" } }) *@
+                @Html.TextArea("Poza", Model.Poza, new { @class = "form-control summernote" })
+
+                @Html.ValidationMessageFor(m => m.Poza, null, new { @class = "text-danger" })
+                <br /><br />
+
+                @Html.Label("Stele", "Numar stele")
+                <br />
+                @* @Html.Colaborator("Stele", new { htmlAttributes = new { @class = "form-control summernote" } }) *@
+                @Html.TextArea("Stele", null, new { @class = "summernote" })
+
+
+                @Html.Label("Pret", "Pret")
+                <br />
+                @* @Html.Colaborator("Stele", new { htmlAttributes = new { @class = "form-control summernote" } }) *@
+                @Html.TextArea("Pret", null, new { @class = "summernote" })
+
+                @Html.ValidationMessageFor(m => m.Pret, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+               
+
+                <br />
+
+                <label>Selectati categoria</label>
+                @Html.DropDownListFor(m => m.CategoryId,
+                new SelectList(Model.Categ, "Value", "Text"),
+                "Selectati categoria", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CategoryId, null, new { @class = "text-danger" })
+                <br /><br />
+
+                <button class="btn btn-sm btn-success" type="submit">Modifica produs</button>
+
+           }
+        </div>
+    </div>
+</div>
+
+
+
+
